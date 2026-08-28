@@ -229,6 +229,61 @@
   opacity: 1;
 }
 
+.background-heart {
+  --heart-left: 50%;
+  --heart-rotation: 0deg;
+  position: fixed;
+  z-index: 1;
+  top: 45%;
+  left: var(--heart-left);
+  color: var(--primary-color);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: min(65vmin, 540px);
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(var(--heart-rotation)) scale(0.55);
+  transform-origin: center;
+  filter: drop-shadow(0 0 5vmin var(--primary-color));
+  will-change: transform, opacity;
+}
+
+.background-heart--left {
+  --heart-left: 25%;
+  --heart-rotation: -12deg;
+}
+
+.background-heart--right {
+  --heart-left: 75%;
+  --heart-rotation: 12deg;
+}
+
+.flowers-screen.show .background-heart {
+  animation:
+    reveal-background-heart 1.8s ease-out 3.2s forwards,
+    breathe-background-heart 5s ease-in-out 5s infinite;
+}
+
+.flowers {
+  z-index: 2;
+}
+
+@keyframes reveal-background-heart {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--heart-rotation)) scale(0.55);
+  }
+  to {
+    opacity: 0.20;
+    transform: translate(-50%, -50%) rotate(var(--heart-rotation)) scale(1);
+  }
+}
+
+@keyframes breathe-background-heart {
+  0%, 100% { transform: translate(-50%, -50%) rotate(var(--heart-rotation)) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(var(--heart-rotation)) scale(1.035); }
+}
+
 body {
   display: flex;
   align-items: flex-end;
