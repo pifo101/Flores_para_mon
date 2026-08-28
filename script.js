@@ -76,6 +76,18 @@ function changeName(newName) {
 
 // Efecto de hover mejorado para el botón
 document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.flower__leafs').forEach((flowerHead) => {
+    const center = flowerHead.querySelector('.flower__white-circle');
+
+    for (let index = 0; index < 18; index++) {
+      const petal = document.createElement('div');
+      petal.className = 'sunflower__petal';
+      petal.style.setProperty('--petal-angle', `${index * 20}deg`);
+      petal.style.setProperty('--petal-delay', `${-(index * 0.12)}s`);
+      flowerHead.insertBefore(petal, center);
+    }
+  });
+
   const button = document.querySelector('.minimal-btn');
   if (button) {
     button.addEventListener('mouseenter', function() {
